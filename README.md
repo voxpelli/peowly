@@ -89,6 +89,10 @@ type HelpListBasic = Record<string, HelpListBasicItem>;
 type HelpList = Record<string, HelpListItem | string>;
 ```
 
+### defaultFlags
+
+Contains the definition of the two default flags `--help` and `--version`.
+
 ### formatHelpList()
 
 Most of the time you should use [`formatHelpMessage()`](#formathelpmessage) instead.
@@ -119,11 +123,11 @@ Same as [`formatHelpList()`](#formathelplist) but with the [`keyPrefix`](#helpli
 
 ### formatGroupedHelpList()
 
-Most of the time you should use [`formatHelpMessage()`](#formathelpmessage) instead.
-
 ```ts
 formatGroupedHelpList(list: HelpList, indent: number, options?: HelpListGroupOptions): string
 ```
+
+Similar to [`formatHelpList()`](#formathelplist) but prints help items grouped and has some additional options to support it in that.
 
 #### HelpListGroupOptions
 
@@ -149,6 +153,7 @@ Same as [`formatGroupedHelpList()`](#formatgroupedhelplist) but with the [`keyPr
 
 * [`argsclopts`](https://github.com/bcomnes/argsclopts) – also concerned with generating help texts for `parseArgs()`
 * [`meow`](https://github.com/sindresorhus/meow) – a more full fledged alternative and name inspiration (`p` as in `parseArgs`, `eow` as in `meow`, `ly` to avoid being perceived as a typejacking)
+* [`meow-with-subcommands`](https://github.com/voxpelli/meow-with-subcommands) – a compantion module to `meow` that provides the same help functionality as this module
 
 ## See also
 
