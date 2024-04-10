@@ -165,6 +165,7 @@ Same as [`formatGroupedHelpList()`](#formatgroupedhelplist) but with the [`keyPr
 * [`argsclopts`](https://github.com/bcomnes/argsclopts) - also concerned with generating help texts for `parseArgs()`
 * [`meow`](https://github.com/sindresorhus/meow) - a more full fledged alternative and name inspiration (`p` as in `parseArgs`, `eow` as in `meow`, `ly` to avoid being perceived as a typejacking)
 * [`meow-with-subcommands`](https://github.com/voxpelli/meow-with-subcommands) - a companion module to `meow` that provides the same help functionality as this module
+* [`peowly-commands`](https://github.com/voxpelli/peowly-commands) - a companion module to this module that makes it on par with `meow-with-subcommands`
 
 ## See also
 
