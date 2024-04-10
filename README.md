@@ -77,11 +77,11 @@ formatHelpMessage(name: string, info?: HelpMessageInfo): string
 
 * `aliases` - _`HelpListBasic`_ - list of help items to join with `commands` but with group name defaulting to `'Aliases'` and other group names being prefixed with `' Aliases'`
 * `commands` - _`HelpListBasic`_ - list of help items to add prior to the flags list and with a default group name of `'Commands'`
-* `examples`- _string[]_ - will be added as examples on individual lines prefixed with `$ ${name}`
-* `flags`- _`HelpList`_ - the flags to output in the help, compatible with _`Flags`_
-* `indent`- _number_ - the number of spaces to indent the help text with (defaults to `2`)
-* `noDefaultFlags`- _boolean_ - excludes the default flags from the help text
-* `usage`- _string_ - what, if anything, that follows the `$ ${name}` in `'Usage'` headline in the initial help text
+* `examples` - _string[]_ - will be added as examples on individual lines prefixed with `$ ${name}`
+* `flags` - _`HelpList`_ - the flags to output in the help, compatible with _`Flags`_
+* `indent` - _number_ - the number of spaces to indent the help text with (defaults to `2`)
+* `noDefaultFlags` - _boolean_ - excludes the default flags from the help text
+* `usage` - _string_ - what, if anything, that follows the `$ ${name}` in `'Usage'` headline in the initial help text
 
 #### Types
 
@@ -158,14 +158,14 @@ Same as [`formatGroupedHelpList()`](#formatgroupedhelplist) but with the [`keyPr
 
 <!-- ## Used by
 
-* [`example`](https://example.com/) – used by this one to do X and Y -->
+* [`example`](https://example.com/) - used by this one to do X and Y -->
 
 ## Similar modules
 
-* [`argsclopts`](https://github.com/bcomnes/argsclopts) – also concerned with generating help texts for `parseArgs()`
-* [`meow`](https://github.com/sindresorhus/meow) – a more full fledged alternative and name inspiration (`p` as in `parseArgs`, `eow` as in `meow`, `ly` to avoid being perceived as a typejacking)
-* [`meow-with-subcommands`](https://github.com/voxpelli/meow-with-subcommands) – a companion module to `meow` that provides the same help functionality as this module
+* [`argsclopts`](https://github.com/bcomnes/argsclopts) - also concerned with generating help texts for `parseArgs()`
+* [`meow`](https://github.com/sindresorhus/meow) - a more full fledged alternative and name inspiration (`p` as in `parseArgs`, `eow` as in `meow`, `ly` to avoid being perceived as a typejacking)
+* [`meow-with-subcommands`](https://github.com/voxpelli/meow-with-subcommands) - a companion module to `meow` that provides the same help functionality as this module
 
 ## See also
 
-* [`parseArgs()`](https://nodejs.org/api/util.html#utilparseargsconfig) – the node.js API this module is built around. Available since `v18.3.0` and `v16.17.0`, non-experimental since `v20.0.0`.
+* [`parseArgs()`](https://nodejs.org/api/util.html#utilparseargsconfig) - the node.js API this module is built around. Available since `v18.3.0` and `v16.17.0`, non-experimental since `v20.0.0`.
