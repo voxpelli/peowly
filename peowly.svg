@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="180px" viewBox="0 0 512 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>peowly</title>
+    <defs>
+        <path d="M36,24 L68,24 L68,32 L76,32 L76,92 L68,92 L68,100 L52,100 L52,124 L0,124 L0,96 L8,96 L8,52 L0,52 L0,24 L36,24 Z M356,24 L356,72 L360,72 L360,24 L396,24 L396,108 L388,108 L388,116 L380,116 L380,124 L320,124 L320,96 L328,96 L328,92 L320,92 L320,24 L356,24 Z M132,24 L132,32 L140,32 L140,68 L140,92 L132,92 L132,100 L72,100 L72,92 L64,92 L64,32 L72,32 L72,24 L132,24 Z M104,68 L100,68 L100,72 L104,72 L104,68 Z M196,24 L196,32 L204,32 L204,92 L196,92 L196,100 L136,100 L136,92 L128,92 L128,32 L136,32 L136,24 L196,24 Z M168,52 L164,52 L164,72 L168,72 L168,52 Z M200,100 L200,92 L192,92 L192,24 L228,24 L228,40 L232,40 L232,24 L268,24 L268,92 L260,92 L260,100 L224,100 L200,100 Z M316,0 L316,72 L324,72 L324,100 L272,100 L272,72 L280,72 L280,28 L272,28 L272,0 L316,0 Z" id="path-1"></path>
+        <filter x="-1.8%" y="-4.8%" width="103.5%" height="112.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feOffset dx="3" dy="-2" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter2" result="shadowBlurOuter2"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 0.184313725   0 0 0 0 0.662745098  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter2" result="shadowMatrixOuter2"></feColorMatrix>
+            <feOffset dx="-1" dy="2" in="SourceAlpha" result="shadowOffsetOuter3"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter3" result="shadowBlurOuter3"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.956862745   0 0 0 0 1  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter3" result="shadowMatrixOuter3"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter3"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="peowly" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(58, 22)" fill-rule="nonzero">
+            <g id="Combined-Shape-Copy">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" xlink:href="#path-1"></use>
+            </g>
+            <path d="M34,34 L58,34 L58,42 L66,42 L66,82 L58,82 L58,90 L34,90 L34,106 L42,106 L42,114 L10,114 L10,106 L18,106 L18,42 L10,42 L10,34 L26,34 L26,42 L33.9375,42 L34,42.0625 L34,82 L50,82 L50,42 L34,42 L34,34 Z M90,50 L114,50 L114,42 L90,42 L90,50 Z M82,34 L122,34 L122,42 L130,42 L130,58 L90,58 L90,82 L114,82 L114,74 L130,74 L130,82 L122,82 L122,90 L82,90 L82,82 L74,82 L74,42 L82,42 L82,34 Z M178,42 L154,42 L154,82 L178,82 L178,42 Z M146,82 L138,82 L138,42 L146,42 L146,34 L186,34 L186,42 L194,42 L194,82 L186,82 L186,90 L146,90 L146,82 Z M250,90 L234,90 L234,82 L226,82 L226,90 L210,90 L210,82 L202,82 L202,34 L218,34 L218,74 L226,74 L226,50 L234,50 L234,74 L242,74 L242,34 L258,34 L258,82 L250,82 L250,90 Z M282,10 L306,10 L306,82 L314,82 L314,90 L282,90 L282,82 L290,82 L290,18 L282,18 L282,10 Z M330,106 L362,106 L362,98 L370,98 L370,90 L338,90 L338,82 L330,82 L330,34 L346,34 L346,82 L370,82 L370,34 L386,34 L386,98 L378,98 L378,106 L370,106 L370,114 L330,114 L330,106 Z" id="Combined-Shape" fill="#FF2FA9"></path>
+        </g>
+    </g>
+</svg>
