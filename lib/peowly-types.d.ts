@@ -1,6 +1,7 @@
 import type { ParseArgsConfig } from 'node:util';
 
 import type { AnyFlag, AnyFlags } from './flag-types.js';
+import type { PeowlyHelpMessageMeta } from './help-list-types.js';
 
 export type PackageJsonLike = {
   name?: string | undefined;
@@ -9,10 +10,9 @@ export type PackageJsonLike = {
   bin?: string | Record<string, string | undefined>;
 };
 
-export interface PeowlyMeta {
+export interface PeowlyMeta extends PeowlyHelpMessageMeta {
   readonly description?: string | false | undefined;
   readonly help?: string | undefined;
-  readonly indent?: number | undefined;
   readonly name?: string | undefined;
   readonly pkg?: PackageJsonLike | undefined;
   readonly processTitle?: string | false | undefined;
