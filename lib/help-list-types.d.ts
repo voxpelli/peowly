@@ -10,7 +10,7 @@ export type HelpListItem = AnyFlag | HelpListBasicItem;
 export type HelpList = Record<string, HelpListItem | string>;
 
 export interface PeowlyHelpMessageMeta {
-  examples?: string[] | undefined;
+  examples?: (string | { prefix?: string, suffix?: string })[] | undefined;
   indent?: number | undefined;
   usage?: string | undefined;
 }

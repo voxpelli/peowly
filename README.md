@@ -50,11 +50,13 @@ peowly(options): { flags, input, remainderArgs, showHelp }
 #### Meta Options
 
 * `description` - _string_ | _false_ - a description that will be prefixed to the help text (defaults to `pkg.description`, deactivated by `false`)
+* `examples` - see [`HelpMessageInfo`](#helpmessageinfo)
 * `help` - _string_ - the help text to show on `--help`, preferably generated with `formatHelpMessage()` (defaults to being rendered with `formatHelpMessage()` using available data)
-* `indent` - _number_ - the number of spaces to indent help text etc (defaults to `2`)
+* `indent` - see [`HelpMessageInfo`](#helpmessageinfo)
 * `name` - _string_ - the name of the CLI command. Used by a couple of other defaults. (defaults to the first key in `pkg.bin` and else to `pkg.name`)
 * `pkg` - _`PackageJsonLike`_ - a `package.json` which some meta data can be derived from
 * `processTitle` - _string_ | _false_ - sets the `process.title` to this (defaults to `name`, deactivated by `false`)
+* `usage` - see [`HelpMessageInfo`](#helpmessageinfo)
 * `version` - _string_ - the version to show on `--version` (defaults to `pkg.version`)
 
 #### Parser Options
@@ -77,7 +79,7 @@ formatHelpMessage(name: string, info?: HelpMessageInfo): string
 
 * `aliases` - _`HelpListBasic`_ - list of help items to join with `commands` but with group name defaulting to `'Aliases'` and other group names being prefixed with `' Aliases'`
 * `commands` - _`HelpListBasic`_ - list of help items to add prior to the flags list and with a default group name of `'Commands'`
-* `examples` - _string[]_ - will be added as examples on individual lines prefixed with `$ ${name}`
+* `examples` - _`(string | { prefix?: string, suffix?: string })[]`_ - will be added as examples on individual lines prefixed with `$ ${name}` or, if provided as prefix and suffix, then the prefix will go inbetween `$ ` and the `name` and the suffix after that, separated by spaces
 * `flags` - _`HelpList`_ - the flags to output in the help, compatible with _`Flags`_
 * `indent` - _number_ - the number of spaces to indent the help text with (defaults to `2`)
 * `noDefaultFlags` - _boolean_ - excludes the default flags from the help text
