@@ -1,6 +1,6 @@
-import type { HelpListBasicItem } from "./help-list-types.d.ts";
+import type { HelpListBasicItem } from './help-list-types.d.ts';
 
-type ParseArgsOptionConfigType = "string" | "boolean";
+type ParseArgsOptionConfigType = 'string' | 'boolean';
 type ParseArgsOptionConfigDefault = string | boolean | string[] | boolean[] | undefined;
 
 // Borrowed from @types/node
@@ -8,8 +8,8 @@ interface ParseArgsOptionConfig {
   type: ParseArgsOptionConfigType;
   multiple?: boolean | undefined;
   // "shortFlag" in meow
-  short?: string | undefined;
-  default?: ParseArgsOptionConfigDefault;
+  'short'?: string | undefined;
+  'default'?: ParseArgsOptionConfigDefault;
 }
 
 type TypeMap = {
@@ -17,7 +17,7 @@ type TypeMap = {
   'boolean': boolean,
   // Meow extension
   // 'number': number|number[],
-}
+};
 
 // Meow extensions
 // interface FlagExtensions {
@@ -29,19 +29,19 @@ interface BaseFlag extends ParseArgsOptionConfig, HelpListBasicItem {}
 
 interface Flag<
   PrimitiveType extends ParseArgsOptionConfigType,
-  DefaultType extends TypeMap[PrimitiveType],
+  DefaultType extends TypeMap[PrimitiveType]
 > extends BaseFlag {
   type: PrimitiveType,
-  default?: DefaultType,
+  'default'?: DefaultType,
   multiple?: false | undefined,
 }
 
 interface MultiFlag<
   PrimitiveType extends ParseArgsOptionConfigType,
-  DefaultType extends ParseArgsOptionConfigDefault,
+  DefaultType extends ParseArgsOptionConfigDefault
 > extends BaseFlag {
   type: PrimitiveType,
-  default?: DefaultType,
+  'default'?: DefaultType,
   multiple: true,
 }
 

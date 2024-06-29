@@ -19,7 +19,7 @@ export interface PeowlyMeta extends PeowlyHelpMessageMeta {
   readonly version?: string | undefined;
 }
 
-export interface ExtendedParseArgsConfig<Flags extends AnyFlags> extends Omit<ParseArgsConfig, 'strict'|'tokens'> {
+export interface ExtendedParseArgsConfig<Flags extends AnyFlags> extends Omit<ParseArgsConfig, 'strict' | 'tokens'> {
   readonly args?: string[] | undefined;
   readonly options?: Flags | undefined;
   readonly returnRemainderArgs?: boolean | undefined;
@@ -32,9 +32,9 @@ type TypedFlag<Flag extends AnyFlag> =
     // Flag extends {type: 'number'}
     //   ? number
     //   :
-      Flag extends {type: 'string'}
+      Flag extends { type: 'string' }
         ? string
-        : Flag extends {type: 'boolean'}
+        : Flag extends { type: 'boolean' }
           ? boolean
           : unknown;
 
@@ -43,7 +43,7 @@ type PossiblyOptionalFlag<Flag extends AnyFlag, FlagType> =
     // Flag extends {isRequired: true}
     //   ? FlagType
     //   :
-    Flag extends {default: unknown}
+    Flag extends { 'default': unknown }
       ? FlagType
       : FlagType | undefined;
 

@@ -1,4 +1,4 @@
-import type { AnyFlag } from "./flag-types.d.ts";
+import type { AnyFlag } from './flag-types.d.ts';
 
 export interface HelpListBasicItem {
   listGroup?: string;
