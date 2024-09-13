@@ -4,6 +4,5 @@
     "index.js",
     "index.d.ts",
     "example/basic.js"
-  ],
-  "ignoreDependencies": ["@types/mocha"]
+  ]
 }
