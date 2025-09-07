@@ -47,7 +47,17 @@ See [`example/basic.js`](./example/basic.js)
 peowly(options): { flags, input, remainderArgs, showHelp }
 ```
 
+#### Parser Options
+
+These options control how command-line arguments are parsed and define the CLI flags/options your tool accepts:
+
+* `args` - _string[]_ - same as for [`parseArgs()`](https://nodejs.org/api/util.html#utilparseargsconfig) (defaults to `process.argv` with `execPath` and `filename` removed)
+* `options` - _`Flags`_ - superset of that of [`parseArgs()`](https://nodejs.org/api/util.html#utilparseargsconfig). Every option / flag is expected to have a `description` string property in addition to what `parseArgs()` require and they may have a `listGroup` string property as well
+* `returnRemainderArgs` - _boolean_ - if set, then all parts of `args` that doesn't match a flag in `options` will be returned as `remainderArgs`, which can eg. be forwarded to another parser
+
 #### Meta Options
+
+These options configure help text, process metadata, and other CLI tool presentation:
 
 * `description` - _string_ | _false_ - a description that will be prefixed to the help text (defaults to `pkg.description`, deactivated by `false`)
 * `examples` - see [`HelpMessageInfo`](#helpmessageinfo)
@@ -58,12 +68,6 @@ peowly(options): { flags, input, remainderArgs, showHelp }
 * `processTitle` - _string_ | _false_ - sets the `process.title` to this (defaults to `name`, deactivated by `false`)
 * `usage` - see [`HelpMessageInfo`](#helpmessageinfo)
 * `version` - _string_ - the version to show on `--version` (defaults to `pkg.version`)
-
-#### Parser Options
-
-* `args` - _string[]_ - same as for [`parseArgs()`](https://nodejs.org/api/util.html#utilparseargsconfig) (defaults to `process.argv` with `execPath` and `filename` removed)
-* `options` - _`Flags`_ - superset of that of [`parseArgs()`](https://nodejs.org/api/util.html#utilparseargsconfig). Every option / flag is expected to have a `description` string property in addition to what `parseArgs()` require and they may have a `listGroup` string property as well
-* `returnRemainderArgs` - _boolean_ - if set, then all parts of `args` that doesn't match a flag in `options` will be returned as `remainderArgs`, which can eg. be forwarded to another parser
 
 ### formatHelpMessage()
 
