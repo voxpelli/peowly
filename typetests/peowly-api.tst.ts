@@ -16,7 +16,9 @@ describe('PeowlyOptions', () => {
       },
     };
 
-    expect(options).type.toBeAssignableTo<PeowlyOptions<any>>();
+    expect(options).type.toBeAssignableTo<
+      PeowlyOptions<Record<string, AnyFlag>>
+    >();
   });
 
   it('should have optional help properties', () => {
@@ -26,7 +28,9 @@ describe('PeowlyOptions', () => {
       options: {},
     };
 
-    expect(optionsWithHelp).type.toBeAssignableTo<PeowlyOptions<any>>();
+    expect(optionsWithHelp).type.toBeAssignableTo<
+      PeowlyOptions<Record<string, AnyFlag>>
+    >();
   });
 });
 
@@ -47,7 +51,7 @@ describe('PeowlyResult', () => {
     type Result = PeowlyResult<Record<string, AnyFlag>>;
 
     const result: Result = {
-      flags: {} as any,
+      flags: {},
       input: [],
       remainderArgs: [],
       showHelp: (): never => {
