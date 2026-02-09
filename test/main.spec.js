@@ -1,10 +1,10 @@
-import chai from 'chai';
+/* eslint-disable n/no-unsupported-features/node-builtins */
+import { describe, it } from 'node:test';
+import assert from 'node:assert/strict';
 
 import { peowly } from '../index.js';
 
-chai.should();
-
-describe('peowly', () => {
+describe('peowly basic', () => {
   it('should work', () => {
     /** @type {import('../index.js').AnyFlags} */
     const options = {
@@ -18,6 +18,6 @@ describe('peowly', () => {
       options,
     });
 
-    flags.should.deep.equal({ fix: true });
+    assert.deepEqual(flags, { fix: true });
   });
 });

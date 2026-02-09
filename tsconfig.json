@@ -7,8 +7,5 @@
     "lib/**/*",
     "test/**/*",
     "typetests/**/*",
-  ],
-  "compilerOptions": {
-    "types": ["node", "mocha"]
-  }
+  ]
 }
