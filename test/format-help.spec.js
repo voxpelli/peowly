@@ -92,7 +92,7 @@ describe('format-help', () => {
         flags: {},
         noDefaultFlags: true,
       });
-      assert(!result.includes('--help') || !result.includes('--version'));
+      assert(!result.includes('--help') && !result.includes('--version'));
     });
 
     it('should respect indent option', () => {

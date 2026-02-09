@@ -27,6 +27,8 @@ describe('ExtendedParseArgsConfig', () => {
       },
     };
 
-    expect(config).type.toBeAssignableTo<ExtendedParseArgsConfig<any>>();
+    expect(config).type.toBeAssignableTo<
+      ExtendedParseArgsConfig<Record<string, AnyFlag>>
+    >();
   });
 });
