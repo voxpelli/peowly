@@ -1,0 +1,9 @@
+{
+  "$schema": "https://tstyche.org/schemas/config.json",
+  "testFileMatch": [
+    "typetests/**/*.tst.ts",
+    "typetests/**/*.test.ts"
+  ],
+  "rejectAnyType": true,
+  "rejectNeverType": true
+}
