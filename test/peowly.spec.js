@@ -145,27 +145,41 @@ describe('peowly', () => {
     });
 
     it('should use pkg.name for default name when bin is string', () => {
-      const { flags } = peowly({
-        args: [],
-        pkg: { bin: 'my-tool', name: 'my-package' },
-        options: {},
-      });
+      const originalTitle = process.title;
 
-      assert(typeof flags === 'object');
+      try {
+        const { flags } = peowly({
+          args: [],
+          pkg: { bin: 'my-tool', name: 'my-package' },
+          options: {},
+        });
+
+        assert(typeof flags === 'object');
+        assert.equal(process.title, 'my-package');
+      } finally {
+        process.title = originalTitle;
+      }
     });
 
     it('should derive name from pkg.bin object', () => {
-      const { flags } = peowly({
-        args: [],
-        pkg: { bin: { 'my-tool': 'lib/cli.js', 'other-tool': 'lib/other.js' } },
-        options: {},
-      });
+      const originalTitle = process.title;
 
-      assert(typeof flags === 'object');
+      try {
+        const { flags } = peowly({
+          args: [],
+          pkg: { bin: { 'my-tool': 'lib/cli.js', 'other-tool': 'lib/other.js' } },
+          options: {},
+        });
+
+        assert(typeof flags === 'object');
+        assert.equal(process.title, 'my-tool');
+      } finally {
+        process.title = originalTitle;
+      }
     });
 
     it('should auto-generate help text using formatHelpMessage', () => {
-      const { flags } = peowly({
+      const { showHelp } = peowly({
         args: [],
         name: 'test-cli',
         options: {
@@ -177,7 +191,7 @@ describe('peowly', () => {
         },
       });
 
-      assert(typeof flags === 'object');
+      assert(typeof showHelp === 'function');
     });
 
     it('should parse short flags', () => {
