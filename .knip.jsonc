@@ -4,5 +4,8 @@
     "index.js",
     "index.d.ts",
     "example/basic.js"
+  ],
+  "ignore": [
+    "**/typetests/**/*.tst.ts"
   ]
 }
