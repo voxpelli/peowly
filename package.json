@@ -58,7 +58,7 @@
     "knip": "^5.83.1",
     "npm-run-all2": "^7.0.2",
     "ts-ignore-import": "^4.0.1",
-    "tstyche": "^6.1.0",
+    "tstyche": "^6.2.0",
     "type-coverage": "^2.29.7",
     "typescript": "~5.9.3",
     "validate-conventional-commit": "^1.0.4"
