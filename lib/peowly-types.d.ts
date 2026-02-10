@@ -29,12 +29,12 @@ export interface PeowlyOptions<Flags extends AnyFlags> extends ExtendedParseArgs
 
 type TypedFlag<Flag extends AnyFlag> =
     // Meow extension
-    // Flag extends {type: 'number'}
+    // Flag['type'] extends 'number'
     //   ? number
     //   :
-      Flag extends { type: 'string' }
+      Flag['type'] extends 'string'
         ? string
-        : Flag extends { type: 'boolean' }
+        : Flag['type'] extends 'boolean'
           ? boolean
           : unknown;
 
