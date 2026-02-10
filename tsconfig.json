@@ -6,6 +6,6 @@
   "include": [
     "lib/**/*",
     "test/**/*",
-    "typetests/**/*",
+    "typetests/**/*"
   ]
 }
