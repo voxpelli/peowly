@@ -56,7 +56,7 @@
     "husky": "^9.1.7",
     "installed-check": "^9.3.0",
     "knip": "^5.41.1",
-    "npm-run-all2": "^7.0.2",
+    "npm-run-all2": "^8.0.4",
     "ts-ignore-import": "^4.0.1",
     "tstyche": "^6.1.0",
     "type-coverage": "^2.29.7",
