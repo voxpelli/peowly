@@ -126,4 +126,94 @@ describe('peowly usage examples', () => {
 
     expect(flags).type.toBeAssignableTo<AnyFlags>();
   });
+
+  it('should correctly type multiple string flags without default', () => {
+    type MultipleStringFlags = {
+      extensions: {
+        type: 'string';
+        multiple: true;
+        description: string;
+      };
+    };
+
+    type Result = ReturnType<typeof peowly<MultipleStringFlags>>['flags'];
+
+    // Should be Array<string> | undefined when no default is provided
+    const flags: Result = { extensions: ['js', 'ts'] };
+    expect(flags.extensions).type.toBeAssignableTo<string[] | undefined>();
+  });
+
+  it('should correctly type multiple string flags with default', () => {
+    type MultipleStringWithDefault = {
+      extensions: {
+        type: 'string';
+        multiple: true;
+        'default': string[];
+        description: string;
+      };
+    };
+
+    type Result = ReturnType<typeof peowly<MultipleStringWithDefault>>['flags'];
+
+    // Should be Array<string> (not undefined) when default is provided
+    const flags: Result = { extensions: ['js'] };
+    expect(flags.extensions).type.toBeAssignableTo<string[]>();
+  });
+
+  it('should type multiple flags correctly when mixed with single flags', () => {
+    type MixedFlags = {
+      verbose: {
+        type: 'boolean';
+        'default': false;
+        description: string;
+      };
+      extensions: {
+        type: 'string';
+        multiple: true;
+        description: string;
+      };
+      output: {
+        type: 'string';
+        'default': string;
+        description: string;
+      };
+    };
+
+    type Result = ReturnType<typeof peowly<MixedFlags>>['flags'];
+
+    // Verify structure
+    expect<Result>().type.toHaveProperty('verbose');
+    expect<Result>().type.toHaveProperty('extensions');
+    expect<Result>().type.toHaveProperty('output');
+
+    // Verify types are correct
+    const flags: Result = {
+      verbose: false,
+      extensions: ['js', 'ts'],
+      output: 'dist.js',
+    };
+
+    expect(flags.verbose).type.toBeAssignableTo<boolean>();
+    expect(flags.extensions).type.toBeAssignableTo<string[] | undefined>();
+    expect(flags.output).type.toBeAssignableTo<string>();
+  });
+
+  it('multiple string flags should not resolve to Array<unknown>', () => {
+    type Flags = {
+      values: {
+        type: 'string';
+        multiple: true;
+        description: string;
+      };
+    };
+
+    type Result = ReturnType<typeof peowly<Flags>>['flags'];
+
+    // This verifies that TypedFlag correctly extracts 'string' type
+    // and doesn't fall through to 'unknown', which would result in Array<unknown>
+    const result: Result = { values: ['a', 'b', 'c'] };
+
+    // Verify the array contains strings, not unknowns
+    expect(result.values).type.toBeAssignableTo<(string[] | undefined)>();
+  });
 });
