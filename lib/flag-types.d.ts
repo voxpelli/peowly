@@ -24,7 +24,10 @@ type TypeMap = {
 //   readonly isRequired?: boolean;
 // }
 
-interface BaseFlag extends ParseArgsOptionConfig, HelpListBasicItem {}
+interface BaseFlag extends ParseArgsOptionConfig, HelpListBasicItem {
+  aliases?: string[] | undefined;
+  showAliasInHelp?: boolean | undefined;
+}
 
 interface Flag<
   PrimitiveType extends ParseArgsOptionConfigType,
@@ -54,12 +57,16 @@ interface NumberFlag extends HelpListBasicItem {
   'short'?: string | undefined,
   'default'?: number | undefined,
   multiple?: false | undefined,
+  aliases?: string[] | undefined,
+  showAliasInHelp?: boolean | undefined,
 }
 interface NumberMultiFlag extends HelpListBasicItem {
   type: 'number',
   'short'?: string | undefined,
   'default'?: number[] | undefined,
   multiple: true,
+  aliases?: string[] | undefined,
+  showAliasInHelp?: boolean | undefined,
 }
 
 export type AnyFlag = StringFlag | BooleanFlag | NumberFlag | NumberMultiFlag;
