@@ -15,8 +15,7 @@ interface ParseArgsOptionConfig {
 type TypeMap = {
   'string': string,
   'boolean': boolean,
-  // Meow extension
-  // 'number': number|number[],
+  'number': number,
 };
 
 // Meow extensions
@@ -47,7 +46,24 @@ interface MultiFlag<
 
 export type StringFlag = Flag<'string', string> | MultiFlag<'string', string[]>;
 export type BooleanFlag = Flag<'boolean', false>;
-// Meow extension
-// type NumberFlag = Flag<'number', number> | Flag<'number', number[], true>;
-export type AnyFlag = StringFlag | BooleanFlag;// | NumberFlag;
+
+// NumberFlag does not extend BaseFlag/ParseArgsOptionConfig because parseArgs()
+// only accepts type:'string'|'boolean'. peowly coerces number flags internally.
+interface NumberFlag extends HelpListBasicItem {
+  type: 'number',
+  'short'?: string | undefined,
+  'default'?: number | undefined,
+  multiple?: false | undefined,
+}
+interface NumberMultiFlag extends HelpListBasicItem {
+  type: 'number',
+  'short'?: string | undefined,
+  'default'?: number[] | undefined,
+  multiple: true,
+}
+
+export type AnyFlag = StringFlag | BooleanFlag | NumberFlag | NumberMultiFlag;
 export type AnyFlags = Record<string, AnyFlag>;
+
+// Internal: flags that parseArgs() understands (no 'number' type)
+export type ParseArgsCompatibleFlag = StringFlag | BooleanFlag;
