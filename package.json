@@ -61,8 +61,5 @@
     "type-coverage": "^2.29.7",
     "typescript": "~5.9.3",
     "validate-conventional-commit": "^1.0.4"
-  },
-  "dependencies": {
-    "@voxpelli/typed-utils": "^5.0.0"
   }
 }

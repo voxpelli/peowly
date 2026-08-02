@@ -105,6 +105,17 @@ describe('peowly long-form aliases', () => {
         });
       }, /already claimed/);
     });
+
+    it('should throw when an alias starts with no-', () => {
+      assert.throws(() => {
+        peowly({
+          args: [],
+          options: {
+            color: { type: 'boolean', 'default': true, description: 'Enable color', aliases: ['no-color'] },
+          },
+        });
+      }, /starts with "no-"/);
+    });
   });
 
   describe('showAliasInHelp', () => {
