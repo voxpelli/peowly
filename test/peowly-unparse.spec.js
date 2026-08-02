@@ -37,6 +37,14 @@ describe('unparseFlags', () => {
       assert.deepEqual(result, ['--retries', '3']);
     });
 
+    it('should emit --name=-5 for a negative number', () => {
+      const result = unparseFlags(
+        { retries: -5 },
+        { retries: { type: 'number', description: 'Retry count' } }
+      );
+      assert.deepEqual(result, ['--retries=-5']);
+    });
+
     it('should omit undefined flags', () => {
       const result = unparseFlags(
         { output: undefined },
@@ -186,6 +194,42 @@ describe('unparseFlags', () => {
       const argv = unparseFlags(parsed, flagDefs);
       const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
       assert.equal(reparsed.retries, 3);
+    });
+
+    it('should round-trip a negative scalar number', () => {
+      const flagDefs = /** @type {const} */ ({
+        offset: { type: 'number', description: 'An offset' },
+      });
+
+      const { flags: parsed } = peowly({
+        args: ['--offset=-42'],
+        options: flagDefs,
+      });
+      assert.equal(parsed.offset, -42);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      assert.deepEqual(argv, ['--offset=-42']);
+
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed.offset, -42);
+    });
+
+    it('should round-trip a negative number in multiple mode', () => {
+      const flagDefs = /** @type {const} */ ({
+        offset: { type: 'number', multiple: true, description: 'Offsets' },
+      });
+
+      const { flags: parsed } = peowly({
+        args: ['--offset=-5', '--offset', '10'],
+        options: flagDefs,
+      });
+      assert.deepEqual(parsed.offset, [-5, 10]);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      assert.deepEqual(argv, ['--offset=-5', '--offset', '10']);
+
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.deepEqual(reparsed.offset, [-5, 10]);
     });
 
     it('should round-trip a mix of flag types', () => {
