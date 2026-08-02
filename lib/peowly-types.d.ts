@@ -19,7 +19,7 @@ export interface PeowlyMeta extends PeowlyHelpMessageMeta {
   readonly version?: string | undefined;
 }
 
-export interface ExtendedParseArgsConfig<Flags extends AnyFlags> extends Omit<ParseArgsConfig, 'strict' | 'tokens'> {
+export interface ExtendedParseArgsConfig<Flags extends AnyFlags> extends Omit<ParseArgsConfig, 'strict' | 'tokens' | 'options'> {
   readonly args?: string[] | undefined;
   readonly options?: Flags | undefined;
   readonly returnRemainderArgs?: boolean | undefined;
@@ -28,11 +28,9 @@ export interface ExtendedParseArgsConfig<Flags extends AnyFlags> extends Omit<Pa
 export interface PeowlyOptions<Flags extends AnyFlags> extends ExtendedParseArgsConfig<Flags>, PeowlyMeta {}
 
 type TypedFlag<Flag extends AnyFlag> =
-    // Meow extension
-    // Flag['type'] extends 'number'
-    //   ? number
-    //   :
-      Flag['type'] extends 'string'
+    Flag['type'] extends 'number'
+      ? number
+      : Flag['type'] extends 'string'
         ? string
         : Flag['type'] extends 'boolean'
           ? boolean
