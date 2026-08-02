@@ -52,7 +52,7 @@ interface MultiFlag<
 }
 
 export type StringFlag = Flag<'string', string> | MultiFlag<'string', string[]>;
-export type BooleanFlag = Flag<'boolean', false>;
+export type BooleanFlag = Flag<'boolean', boolean>;
 
 // NumberFlag does not extend BaseFlag/ParseArgsOptionConfig because parseArgs()
 // only accepts type:'string'|'boolean'. peowly coerces number flags internally.

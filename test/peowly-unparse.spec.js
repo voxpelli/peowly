@@ -1,4 +1,3 @@
-/* eslint-disable n/no-unsupported-features/node-builtins */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
@@ -14,12 +13,12 @@ describe('unparseFlags', () => {
       assert.deepEqual(result, ['--verbose']);
     });
 
-    it('should omit a false boolean flag', () => {
+    it('should emit --no-name for a false boolean flag', () => {
       const result = unparseFlags(
         { verbose: false },
         { verbose: { type: 'boolean', description: 'Verbose' } }
       );
-      assert.deepEqual(result, []);
+      assert.deepEqual(result, ['--no-verbose']);
     });
 
     it('should emit --name value for a string flag', () => {
@@ -84,40 +83,141 @@ describe('unparseFlags', () => {
           debug: { type: 'boolean', description: 'Debug' },
         }
       );
-      assert.deepEqual(result, ['--verbose', '--output', 'out.js', '--count', '2']);
+      assert.deepEqual(result, ['--verbose', '--output', 'out.js', '--count', '2', '--no-debug']);
     });
   });
 
   describe('round-trip with peowly', () => {
-    it('should round-trip a parsed flags object back to argv and re-parse identically', () => {
-      const flagDefs = {
-        verbose: { type: /** @type {const} */ ('boolean'), description: 'Verbose' },
-        output: { type: /** @type {const} */ ('string'), description: 'Output' },
-        retries: { type: /** @type {const} */ ('number'), description: 'Retries' },
-      };
+    it('should round-trip a true boolean flag', () => {
+      const flagDefs = /** @type {const} */ ({
+        verbose: { type: 'boolean', 'default': false, description: 'Verbose' },
+      });
 
       const { flags: parsed } = peowly({
-        args: ['--verbose', '--output', 'out.js', '--retries', '3'],
+        args: ['--verbose'],
         options: flagDefs,
       });
+      assert.equal(parsed['verbose'], true);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed['verbose'], true);
+    });
+
+    it('should round-trip a false boolean flag with default: true', () => {
+      const flagDefs = /** @type {const} */ ({
+        verbose: { type: 'boolean', 'default': true, description: 'Verbose' },
+      });
+
+      const { flags: parsed } = peowly({
+        args: ['--no-verbose'],
+        options: flagDefs,
+      });
+      assert.equal(parsed['verbose'], false);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed['verbose'], false);
+    });
+
+    it('should round-trip a false boolean flag without a default', () => {
+      const flagDefs = /** @type {const} */ ({
+        verbose: { type: 'boolean', description: 'Verbose' },
+      });
+
+      const { flags: parsed } = peowly({
+        args: ['--no-verbose'],
+        options: flagDefs,
+      });
+      assert.equal(parsed.verbose, false);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed.verbose, false);
+    });
+
+    it('should round-trip an absent boolean with default: true', () => {
+      const flagDefs = /** @type {const} */ ({
+        verbose: { type: 'boolean', 'default': true, description: 'Verbose' },
+      });
+
+      const { flags: parsed } = peowly({ args: [], options: flagDefs });
+      assert.equal(parsed['verbose'], true);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed['verbose'], true);
+    });
+
+    it('should round-trip an absent boolean with default: false', () => {
+      const flagDefs = /** @type {const} */ ({
+        verbose: { type: 'boolean', 'default': false, description: 'Verbose' },
+      });
+
+      const { flags: parsed } = peowly({ args: [], options: flagDefs });
+      assert.equal(parsed['verbose'], false);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed['verbose'], false);
+    });
+
+    it('should round-trip a string flag with a default', () => {
+      const flagDefs = /** @type {const} */ ({
+        output: { type: 'string', 'default': 'out.js', description: 'Output' },
+      });
+
+      const { flags: parsed } = peowly({ args: [], options: flagDefs });
+      assert.equal(parsed.output, 'out.js');
+
+      const argv = unparseFlags(parsed, flagDefs);
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed.output, 'out.js');
+    });
+
+    it('should round-trip a number flag with a default', () => {
+      const flagDefs = /** @type {const} */ ({
+        retries: { type: 'number', 'default': 3, description: 'Retries' },
+      });
+
+      const { flags: parsed } = peowly({ args: [], options: flagDefs });
+      assert.equal(parsed.retries, 3);
+
+      const argv = unparseFlags(parsed, flagDefs);
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
+      assert.equal(reparsed.retries, 3);
+    });
+
+    it('should round-trip a mix of flag types', () => {
+      const flagDefs = /** @type {const} */ ({
+        verbose: { type: 'boolean', 'default': true, description: 'Verbose' },
+        output: { type: 'string', 'default': 'out.js', description: 'Output' },
+        retries: { type: 'number', 'default': 3, description: 'Retries' },
+      });
+
+      const { flags: parsed } = peowly({
+        args: ['--no-verbose', '--output', 'dist.js', '--retries', '5'],
+        options: flagDefs,
+      });
+
+      assert.equal(parsed['verbose'], false);
+      assert.equal(parsed['output'], 'dist.js');
+      assert.equal(parsed['retries'], 5);
 
       const argv = unparseFlags(parsed, flagDefs);
 
-      const { flags: reparsed } = peowly({
-        args: argv,
-        options: flagDefs,
-      });
+      const { flags: reparsed } = peowly({ args: argv, options: flagDefs });
 
-      assert.equal(reparsed.verbose, parsed.verbose);
-      assert.equal(reparsed.output, parsed.output);
-      assert.equal(reparsed.retries, parsed.retries);
+      assert.equal(reparsed['verbose'], false);
+      assert.equal(reparsed['output'], 'dist.js');
+      assert.equal(reparsed['retries'], 5);
     });
 
     it('should round-trip multiple flags', () => {
-      const flagDefs = {
-        ext: { type: /** @type {const} */ ('string'), multiple: /** @type {const} */ (true), description: 'Extensions' },
-        port: { type: /** @type {const} */ ('number'), multiple: /** @type {const} */ (true), description: 'Ports' },
-      };
+      const flagDefs = /** @type {const} */ ({
+        ext: { type: 'string', multiple: /** @type {const} */ (true), description: 'Extensions' },
+        port: { type: 'number', multiple: /** @type {const} */ (true), description: 'Ports' },
+      });
 
       const { flags: parsed } = peowly({
         args: ['--ext', 'js', '--ext', 'ts', '--port', '3000', '--port', '4000'],

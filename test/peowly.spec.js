@@ -1,4 +1,3 @@
-/* eslint-disable n/no-unsupported-features/node-builtins */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
@@ -263,6 +262,17 @@ describe('peowly', () => {
       });
 
       assert.deepEqual(remainderArgs, ['file.js']);
+    });
+
+    it('should throw when a flag name starts with no-', () => {
+      assert.throws(() => {
+        peowly({
+          args: [],
+          options: {
+            'no-color': { type: 'boolean', description: 'Disable color' },
+          },
+        });
+      }, /starts with "no-"/);
     });
   });
 });

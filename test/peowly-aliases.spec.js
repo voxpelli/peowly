@@ -1,4 +1,3 @@
-/* eslint-disable n/no-unsupported-features/node-builtins */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
@@ -184,6 +183,30 @@ describe('peowly long-form aliases', () => {
 
       assert.equal(flags.color, undefined);
       assert.deepEqual(input, ['--colors=always']);
+    });
+  });
+
+  describe('--no- prefix with allowNegative', () => {
+    it('should handle --no- prefix for aliases', () => {
+      const { flags } = peowly({
+        args: ['--no-colors'],
+        options: {
+          color: { type: 'boolean', 'default': true, description: 'Enable color', aliases: ['colors'] },
+        },
+      });
+
+      assert.equal(flags['color'], false);
+    });
+
+    it('should handle --no- prefix for canonical flags', () => {
+      const { flags } = peowly({
+        args: ['--no-color'],
+        options: {
+          color: { type: 'boolean', 'default': true, description: 'Enable color' },
+        },
+      });
+
+      assert.equal(flags['color'], false);
     });
   });
 });
