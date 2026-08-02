@@ -24,9 +24,12 @@ type TypeMap = {
 //   readonly isRequired?: boolean;
 // }
 
-interface BaseFlag extends ParseArgsOptionConfig, HelpListBasicItem {
+interface FlagAliasConfig {
   aliases?: string[] | undefined;
   showAliasInHelp?: boolean | undefined;
+}
+
+interface BaseFlag extends ParseArgsOptionConfig, HelpListBasicItem, FlagAliasConfig {
 }
 
 interface Flag<
@@ -52,21 +55,17 @@ export type BooleanFlag = Flag<'boolean', false>;
 
 // NumberFlag does not extend BaseFlag/ParseArgsOptionConfig because parseArgs()
 // only accepts type:'string'|'boolean'. peowly coerces number flags internally.
-interface NumberFlag extends HelpListBasicItem {
+interface NumberFlag extends HelpListBasicItem, FlagAliasConfig {
   type: 'number',
   'short'?: string | undefined,
   'default'?: number | undefined,
   multiple?: false | undefined,
-  aliases?: string[] | undefined,
-  showAliasInHelp?: boolean | undefined,
 }
-interface NumberMultiFlag extends HelpListBasicItem {
+interface NumberMultiFlag extends HelpListBasicItem, FlagAliasConfig {
   type: 'number',
   'short'?: string | undefined,
   'default'?: number[] | undefined,
   multiple: true,
-  aliases?: string[] | undefined,
-  showAliasInHelp?: boolean | undefined,
 }
 
 export type AnyFlag = StringFlag | BooleanFlag | NumberFlag | NumberMultiFlag;
