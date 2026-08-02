@@ -6,5 +6,8 @@
   ],
   "ignore": [
     "**/typetests/**/*.tst.ts"
+  ],
+  "ignoreDependencies": [
+    "@voxpelli/ast-grep-rules"
   ]
 }
