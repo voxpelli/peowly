@@ -1,7 +1,7 @@
-import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
 
-import { peowly, formatFlagList } from '../lib/main.js';
+import { formatFlagList, peowly } from '../lib/main.js';
 
 describe('peowly number flags', () => {
   describe('type: number', () => {

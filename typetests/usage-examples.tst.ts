@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'tstyche';
 
-import type { AnyFlags } from '../index.js';
 import { peowly } from '../index.js';
+import type { AnyFlags } from '../index.js';
 
 describe('peowly usage examples', () => {
   it('should work with typed flags - string and boolean', () => {

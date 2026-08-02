@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'tstyche';
 
 import type {
-  ExtendedParseArgsConfig,
   AnyFlag,
+  ExtendedParseArgsConfig,
   PeowlyMeta,
 } from '../index.js';
 

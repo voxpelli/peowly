@@ -5,16 +5,16 @@ export type {
 } from './lib/flag-types.d.ts';
 
 export type {
-  HelpListOptions,
   HelpListGroupOptions,
+  HelpListOptions,
 } from './lib/format-lists.js';
 
 export type {
-  HelpMessageInfo,
   HelpList,
   HelpListBasic,
   HelpListBasicItem,
   HelpListItem,
+  HelpMessageInfo,
 } from './lib/help-list-types.d.ts';
 
 export type {

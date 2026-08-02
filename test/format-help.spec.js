@@ -1,7 +1,7 @@
-import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
 
-import { formatHelpMessage, defaultFlags } from '../lib/main.js';
+import { defaultFlags, formatHelpMessage } from '../lib/main.js';
 
 describe('format-help', () => {
   describe('formatHelpMessage()', () => {

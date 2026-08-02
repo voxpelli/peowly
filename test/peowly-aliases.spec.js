@@ -1,7 +1,7 @@
-import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
 
-import { peowly, formatGroupedFlagList } from '../lib/main.js';
+import { formatGroupedFlagList, peowly } from '../lib/main.js';
 
 describe('peowly long-form aliases', () => {
   describe('basic alias rewriting', () => {

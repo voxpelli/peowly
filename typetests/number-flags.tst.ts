@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'tstyche';
 
-import type { AnyFlag, AnyFlags } from '../index.js';
 import { peowly } from '../index.js';
+import type { AnyFlag, AnyFlags } from '../index.js';
 
 describe('type: number flags', () => {
   it('number flag without default resolves to number | undefined', () => {

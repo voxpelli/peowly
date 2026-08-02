@@ -1,13 +1,10 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "entry": [
-    "index.d.ts",
-    "example/basic.js"
+    "example/basic.js",
+    "test/**/*.js"
   ],
   "ignore": [
     "**/typetests/**/*.tst.ts"
-  ],
-  "ignoreBinaries": [
-    "jq"
   ]
 }
