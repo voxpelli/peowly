@@ -31,15 +31,21 @@
     "build:1-declaration": "tsc -p declaration.tsconfig.json",
     "build:2-add-ignores": "ts-ignore-import '**/*.d.ts'",
     "check": "run-s clean && run-p check:* --continue-on-error && run-s check-type-tests",
-    "check:installed-check": "installed-check -i npm-run-all2",
+    "check:ast-grep": "ast-grep scan",
+    "check:installed-check": "installed-check -i @voxpelli/remark-preset -i npm-run-all2",
     "check:knip": "knip",
     "check:lint": "eslint",
+    "check:md": "remark . --quiet --frail --ignore-path .gitignore",
     "check:tsc": "tsc",
     "check:type-coverage": "type-coverage --detail --strict --at-least 99 --ignore-files 'test/*'",
     "check-type-tests": "run-s build && tstyche --reporters list,summary && run-s clean",
     "clean": "run-p clean:*",
     "clean:declarations-lib": "rm -rf $(find lib -type f -name '*.d.ts*' ! -name '*-types.d.ts')",
     "clean:declarations-top": "rm -rf $(find . -maxdepth 1 -type f -name '*.d.ts*' ! -name 'index.d.ts')",
+    "fix": "run-s fix:*",
+    "fix:ast-grep": "run-s check:ast-grep -- --update-all",
+    "fix:lint": "eslint --fix",
+    "fix:md": "run-s check:md -- -o",
     "prepare": "husky",
     "prepublishOnly": "run-s build",
     "test": "run-s check test:*",
@@ -47,8 +53,11 @@
     "test-ci": "run-s test:*"
   },
   "devDependencies": {
+    "@ast-grep/cli": "^0.45.0",
     "@types/node": "^22.13.0",
+    "@voxpelli/ast-grep-rules": "^0.1.0",
     "@voxpelli/eslint-config": "^25.1.0",
+    "@voxpelli/remark-preset": "^0.1.1",
     "@voxpelli/tsconfig": "^16.2.1",
     "c8": "^12.0.0",
     "eslint": "^9.39.5",
@@ -56,10 +65,16 @@
     "installed-check": "^10.0.1",
     "knip": "^6.31.0",
     "npm-run-all2": "^9.0.3",
+    "remark-cli": "^12.0.1",
     "ts-ignore-import": "^4.0.1",
     "tstyche": "^6.2.0",
     "type-coverage": "^2.30.1",
     "typescript": "^6.0.3",
     "validate-conventional-commit": "^1.0.4"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "@voxpelli/remark-preset"
+    ]
   }
 }
