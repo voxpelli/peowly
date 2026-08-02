@@ -136,4 +136,54 @@ describe('peowly long-form aliases', () => {
       assert.match(help, /\[aliases: --colors, --colours\]/);
     });
   });
+
+  describe('end-of-options delimiter (--)', () => {
+    it('should not rewrite aliases after -- delimiter', () => {
+      const { flags, input } = peowly({
+        args: ['--colors', '--', '--colors'],
+        options: {
+          color: { type: 'boolean', 'default': false, description: 'Enable color', aliases: ['colors'] },
+        },
+      });
+
+      assert.equal(flags.color, true);
+      assert.deepEqual(input, ['--colors']);
+    });
+
+    it('should preserve -- itself in positionals', () => {
+      const { flags, input } = peowly({
+        args: ['--', '--colors'],
+        options: {
+          color: { type: 'boolean', 'default': false, description: 'Enable color', aliases: ['colors'] },
+        },
+      });
+
+      assert.equal(flags.color, false);
+      assert.deepEqual(input, ['--colors']);
+    });
+
+    it('should not affect alias rewriting before --', () => {
+      const { flags, input } = peowly({
+        args: ['--colors', '--', 'file.txt'],
+        options: {
+          color: { type: 'boolean', 'default': false, description: 'Enable color', aliases: ['colors'] },
+        },
+      });
+
+      assert.equal(flags.color, true);
+      assert.deepEqual(input, ['file.txt']);
+    });
+
+    it('should handle = syntax after -- delimiter', () => {
+      const { flags, input } = peowly({
+        args: ['--', '--colors=always'],
+        options: {
+          color: { type: 'string', description: 'Color mode', aliases: ['colors'] },
+        },
+      });
+
+      assert.equal(flags.color, undefined);
+      assert.deepEqual(input, ['--colors=always']);
+    });
+  });
 });
