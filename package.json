@@ -43,7 +43,6 @@
     "prepare": "husky",
     "prepublishOnly": "run-s build",
     "test:node": "c8 --reporter=lcov --reporter=text node --test",
-    "test:tstyche": "run-s build && tstyche --target \"$(jq -r '.engines.typescript' package.json)\" --reporters list,summary && run-s clean",
     "test-ci": "run-s test:*",
     "test": "run-s check test:*"
   },
