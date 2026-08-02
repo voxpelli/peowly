@@ -115,7 +115,7 @@ describe('peowly long-form aliases', () => {
         2
       );
 
-      assert(!help.includes('[alias'));
+      assert.doesNotMatch(help, /\[alias/);
     });
 
     it('should show alias annotation when showAliasInHelp is true', () => {
@@ -124,7 +124,7 @@ describe('peowly long-form aliases', () => {
         2
       );
 
-      assert(help.includes('[alias: --colors]'), `Expected alias in: ${help}`);
+      assert.match(help, /\[alias: --colors\]/);
     });
 
     it('should use plural label for multiple aliases', () => {
@@ -133,7 +133,7 @@ describe('peowly long-form aliases', () => {
         2
       );
 
-      assert(help.includes('[aliases: --colors, --colours]'), `Expected aliases in: ${help}`);
+      assert.match(help, /\[aliases: --colors, --colours\]/);
     });
   });
 });

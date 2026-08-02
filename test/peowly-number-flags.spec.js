@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { peowly } from '../lib/main.js';
+import { peowly, formatFlagList } from '../lib/main.js';
 
 describe('peowly number flags', () => {
   describe('type: number', () => {
@@ -137,15 +137,12 @@ describe('peowly number flags', () => {
 
   describe('number defaults in help output', () => {
     it('should display numeric default in flag list', () => {
-      const { showHelp } = peowly({
-        args: [],
-        options: {
-          retries: { type: 'number', 'default': 3, description: 'Retry count' },
-        },
-      });
+      const help = formatFlagList(
+        { retries: { type: 'number', 'default': 3, description: 'Retry count' } },
+        2
+      );
 
-      // showHelp exists and is a function (help text generation succeeded)
-      assert.equal(typeof showHelp, 'function');
+      assert.match(help, /\[3\]/);
     });
   });
 });
