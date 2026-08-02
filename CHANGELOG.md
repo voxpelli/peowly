@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.0.0](https://github.com/voxpelli/peowly/compare/v1.3.3...v2.0.0) (2026-08-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* `--no-` prefix is now supported for boolean flags, meaning `--no-color` sets a boolean flag `color` to `false` instead of being treated as an unknown flag. Defining flag names that start with `no-` now throws an error. Minimum Node.js version raised to 22.13.0 and minimum TypeScript version raised to 5.9. The `groupBy` export has been removed from `utils.js` in favor of the built-in `Object.groupBy()`.
+
+### 🌟 Features
+
+* add number flags, long-form aliases, and unparseFlags ([#38](https://github.com/voxpelli/peowly/issues/38)) ([ffc7ad4](https://github.com/voxpelli/peowly/commit/ffc7ad43d9da050a486712505555f4b8db14661a))
+
+
+### 📚 Documentation
+
+* add DeepWiki badge to README ([3b431c6](https://github.com/voxpelli/peowly/commit/3b431c61d23607b6afaf0db866f3d9fab2583daa))
+
+
+### 🧹 Chores
+
+* add ast-grep and remark linting tooling ([#41](https://github.com/voxpelli/peowly/issues/41)) ([be63155](https://github.com/voxpelli/peowly/commit/be6315579b02a2384d569273f0440a2dbe841d91))
+* add context7.json with URL and public key ([cb7e83d](https://github.com/voxpelli/peowly/commit/cb7e83d7b22052f99bee934f3a39ab42dec7bcf6))
+* **deps:** update dev dependencies ([8161aa3](https://github.com/voxpelli/peowly/commit/8161aa3332b300ca111cb2924cf641f02aebe875))
+* fix new linting finds / opinions ([689a6b5](https://github.com/voxpelli/peowly/commit/689a6b5340cb758bdeae478e1a501f253456e333))
+
 ## [1.3.3](https://github.com/voxpelli/peowly/compare/v1.3.2...v1.3.3) (2026-02-10)
 
 
