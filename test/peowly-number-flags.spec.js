@@ -141,7 +141,7 @@ describe('peowly number flags', () => {
         2
       );
 
-      assert.match(help, /\[3\]/);
+      assert.match(help, /\[default: 3\]/);
     });
   });
 });
