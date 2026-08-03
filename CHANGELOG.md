@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.1](https://github.com/voxpelli/peowly/compare/v2.0.0...v2.0.1) (2026-08-03)
+
+
+### 🩹 Fixes
+
+* display boolean default:true flags as --[no-]flag ([#43](https://github.com/voxpelli/peowly/issues/43)) ([1ac2b70](https://github.com/voxpelli/peowly/commit/1ac2b705e9050afdf2e3e09566ab0a7903cf960c))
+
+
+### 🧹 Chores
+
+* **deps:** update dependency @types/node to ^22.20.1 ([#39](https://github.com/voxpelli/peowly/issues/39)) ([8e9bc02](https://github.com/voxpelli/peowly/commit/8e9bc02bd0476c694e6a3cffb2e61fc93770324c))
+
 ## [2.0.0](https://github.com/voxpelli/peowly/compare/v1.3.3...v2.0.0) (2026-08-02)
 
 
