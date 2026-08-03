@@ -155,6 +155,48 @@ describe('format-help', () => {
       assert(result.includes('h'));
       assert(result.includes('Help'));
     });
+
+    it('should display boolean flags with default: true using [no-] convention', () => {
+      const result = formatHelpMessage('test-cli', {
+        flags: {
+          color: {
+            type: 'boolean',
+            'default': true,
+            description: 'Enable color output',
+          },
+          verbose: {
+            type: 'boolean',
+            'default': false,
+            description: 'Enable verbose output',
+          },
+        },
+      });
+      assert(result.includes('--[no-]color'));
+      assert(result.includes('Enable color output'));
+      assert(result.includes('--verbose'));
+      assert(!result.includes('--color '));
+    });
+
+    it('should produce exact end-to-end output with mixed flags', () => {
+      const result = formatHelpMessage('my-cli', {
+        usage: '[options]',
+        flags: {
+          color: { type: 'boolean', 'default': true, description: 'Enable color' },
+          debug: { type: 'boolean', 'default': false, 'short': 'd', description: 'Debug mode' },
+        },
+      });
+      assert.equal(result, [
+        '  Usage',
+        '    $ my-cli [options]',
+        '',
+        '  Options',
+        '        --[no-]color  [default: on]  Enable color',
+        '    -d, --debug                      Debug mode',
+        '        --help                       Prints this help and exits.',
+        '        --version                    Prints current version and exits.',
+        '',
+      ].join('\n'));
+    });
   });
 
   describe('defaultFlags', () => {
