@@ -1,6 +1,6 @@
 {
   "name": "peowly",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "meow inspired parseArgs() based CLI parser with help text helpers",
   "homepage": "http://github.com/voxpelli/peowly",
   "repository": {
