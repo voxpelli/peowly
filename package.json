@@ -67,7 +67,7 @@
     "npm-run-all2": "^9.0.3",
     "remark-cli": "^12.0.1",
     "ts-ignore-import": "^4.0.1",
-    "tstyche": "^6.2.0",
+    "tstyche": "^7.2.5",
     "type-coverage": "^2.30.1",
     "typescript": "^6.0.3",
     "validate-conventional-commit": "^1.0.4"
